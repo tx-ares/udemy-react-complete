@@ -1,5 +1,4 @@
 function Concept(props) {
-console.log(props)
     return (
         <li className="concept">
             <img src={props.data.image} alt={props.data.title} />
