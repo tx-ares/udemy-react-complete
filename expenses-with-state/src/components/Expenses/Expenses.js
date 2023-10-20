@@ -6,12 +6,11 @@ import ExpensesFilter from "./ExpensesFilter"
 
 function Expenses(props) {
     const [filteredYear, setFilteredYear] = useState('2023')
-    // const [filterInfoText, setFilterInfoText] = useState('2019', '2021 & 2022', '2023')
 
     const filterChangeHandler = selectedYear => {
         setFilteredYear(selectedYear)
     }
-    
+
     return (
         <div>
             <Card className="expenses">
