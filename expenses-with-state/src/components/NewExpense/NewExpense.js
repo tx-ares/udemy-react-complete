@@ -4,8 +4,8 @@ import './NewExpense.css'
 const NewExpense = (props) => {
     const onAddExpense = (newExpense) => {
         const expenseData = { ...newExpense, id: Math.random().toString() }
-        // console.log(expenseData)
         props.onAddExpense(expenseData)
+        debugger
     }
 
     return (
