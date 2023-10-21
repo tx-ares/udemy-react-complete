@@ -1,4 +1,3 @@
-import ExpenseItem from "./ExpenseItem"
 import Card from "../UI/Card"
 import './Expenses.css'
 import { useState } from "react"
@@ -15,7 +14,6 @@ function Expenses(props) {
     const filteredExpenses = props.expenses.filter((expense) => {
         return expense.date.getFullYear().toString() === filteredYear;
     })
-
 
     return (
         <div>
