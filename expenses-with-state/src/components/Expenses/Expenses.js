@@ -22,7 +22,6 @@ function Expenses(props) {
                 {filteredExpenses.length === 0 ? <p className="filter-message">No expenses found.</p> : filteredExpenses.map((expense, i) => {
                     return <ExpenseItem key={i} title={expense.title} amount={expense.amount} date={expense.date} />
                 })}
-
             </Card>
         </div>
     )
