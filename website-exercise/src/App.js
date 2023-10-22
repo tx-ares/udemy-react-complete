@@ -1,5 +1,5 @@
-import keyConceptsImage from './assets/images/key-concepts.png';
-import ConceptList from './Components/Concepts/ConceptList';
+import keyConceptsImage from "./assets/images/key-concepts.png";
+import ConceptList from "./Components/Concepts/ConceptList";
 
 function App() {
   return (
