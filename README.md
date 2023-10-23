@@ -1,0 +1,1 @@
+A repo documenting my notes, triumphs, failures, and thought processes while going through Maximillian Schwarzmüller's course on React => https://www.udemy.com/course/react-the-complete-guide-incl-redux/
