@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { styled } from 'styled-components';
 import Button from './Button.jsx';
 import Input from './Input.jsx';
 
