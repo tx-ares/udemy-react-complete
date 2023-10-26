@@ -80,7 +80,7 @@ input.invalid {
 	justify-content: flex-end;
 	gap: 1rem;
 }
-
+/* 
 .button {
 	padding: 1rem 2rem;
 	font-weight: 600;
@@ -94,7 +94,7 @@ input.invalid {
 
 .button:hover {
 	background-color: #f0920e;
-}
+} */
 
 .text-button {
 	color: #f0b322;
