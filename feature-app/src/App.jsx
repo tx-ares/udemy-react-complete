@@ -1,9 +1,13 @@
+import Sidebar from './components/Sidebar/Sidebar';
+import Tasks from './components/Tasks/Tasks';
+
 function App() {
-  return (
-    <>
-      <h1 className="my-8 text-center text-5xl font-bold">Hello World</h1>
-    </>
-  );
+	return (
+		<div className='flex max-h-screen'>
+			<Sidebar></Sidebar>
+			<Tasks></Tasks>
+		</div>
+	);
 }
 
 export default App;
