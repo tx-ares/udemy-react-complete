@@ -5,6 +5,7 @@ const CreateProjectForm = (props) => {
 		console.log(props);
 		event.preventDefault();
 		props.onAddProject({
+			id: 1,
 			title: 'a new title',
 			description: 'blah blah',
 			date: new Date(),
