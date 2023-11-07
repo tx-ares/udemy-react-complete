@@ -16,6 +16,7 @@ function Sidebar() {
 		console.log(project);
 		if (project) {
 			setProjectList((prevProjectList) => [project, ...prevProjectList]);
+			setShowCreateForm(false);
 		}
 	};
 
