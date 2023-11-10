@@ -1,4 +1,3 @@
-import { createPortal } from 'react-dom';
 import ProjectDetail from './ProjectDetail';
 
 function ProjectList(projectList) {
