@@ -1,16 +1,17 @@
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 const CreateProjectForm = (props) => {
 	function submitHandler(event) {
-		console.log(props);
+		const { title, description, dueDate } = event.target.elements;
+
 		event.preventDefault();
 		props.onAddProject({
 			id: 1,
-			title: 'a new title',
-			description: 'blah blah',
-			date: new Date(),
+			title: title.value,
+			description: description.value,
+			date: dueDate.value,
 		});
-		debugger;
 	}
 
 	return createPortal(
@@ -19,17 +20,23 @@ const CreateProjectForm = (props) => {
 			onSubmit={submitHandler}>
 			<div className='flex'>
 				<label>Title</label>
-				<input type='text'></input>
+				<input
+					type='text'
+					id='title'></input>
 			</div>
 
 			<div className='flex'>
 				<label>Description</label>
-				<input type='text'></input>
+				<input
+					type='text'
+					id='description'></input>
 			</div>
 
 			<div className='flex'>
 				<label>Due Date</label>
-				<input type='date'></input>
+				<input
+					type='date'
+					id='dueDate'></input>
 			</div>
 
 			<div className='buttons-container flex'>
