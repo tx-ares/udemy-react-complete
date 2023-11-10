@@ -1,19 +1,20 @@
-import ProjectDetail from './ProjectDetail';
+import Project from './Project';
 
 function ProjectList(projectList) {
-	console.log(projectList, ' << list');
+	const showDetails = (details) => {
+		console.log(details);
+	};
 
-	const projectDetailElements = projectList.projects.map((proj, i) => {
+	const projectElements = projectList.projects.map((proj, i) => {
 		return (
-			<ProjectDetail
+			<Project
 				key={i}
-				title={proj.title}
-				description={proj.description}
-				dueDate={proj.dueDate}></ProjectDetail>
+				details={proj}
+				showDetails={showDetails}></Project>
 		);
 	});
 
-	return <div id='project-list'>{projectDetailElements}</div>;
+	return <div id='project-list'>{projectElements}</div>;
 }
 
 export default ProjectList;

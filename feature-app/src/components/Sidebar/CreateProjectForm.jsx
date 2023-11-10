@@ -1,19 +1,18 @@
-import { createPortal } from 'react-dom';
-
 const CreateProjectForm = (props) => {
 	function submitHandler(event) {
 		const { title, description, dueDate } = event.target.elements;
 
 		event.preventDefault();
 		props.onAddProject({
-			id: 1,
+			id: Math.round(Math.random()),
 			title: title.value,
 			description: description.value,
 			date: dueDate.value,
+			tasks: [],
 		});
 	}
 
-	return createPortal(
+	return (
 		<form
 			className='flex-col'
 			onSubmit={submitHandler}>
@@ -48,8 +47,7 @@ const CreateProjectForm = (props) => {
 					Cancel
 				</button>
 			</div>
-		</form>,
-		document.getElementById('tasks')
+		</form>
 	);
 };
 

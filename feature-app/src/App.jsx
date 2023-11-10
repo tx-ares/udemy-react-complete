@@ -1,11 +1,43 @@
 import Sidebar from './components/Sidebar/Sidebar';
-import Tasks from './components/Tasks/Tasks';
+import Details from './components/Details/Details';
+import CreateProjectForm from './components/Sidebar/CreateProjectForm';
+import { useState } from 'react';
 
 function App() {
+	const [showCreateForm, setShowCreateForm] = useState(false);
+	const [projectList, setProjectList] = useState([
+		{
+			id: 1,
+			title: 'my title',
+			description: 'some data...',
+			dueDate: new Date(),
+			tasks: [],
+		},
+	]);
+
+	function handleShowCreateForm() {
+		setShowCreateForm(true);
+	}
+
+	const addProjectHandler = (project) => {
+		console.log(project);
+		if (project) {
+			setProjectList((prevProjectList) => [project, ...prevProjectList]);
+			setShowCreateForm(false);
+		}
+	};
+
 	return (
 		<div className='flex max-h-screen'>
-			<Sidebar></Sidebar>
-			<Tasks></Tasks>
+			<Sidebar
+				projectList={projectList}
+				showCreateForm={handleShowCreateForm}></Sidebar>
+			{showCreateForm ? (
+				<CreateProjectForm
+					onAddProject={addProjectHandler}></CreateProjectForm>
+			) : (
+				<Details></Details>
+			)}
 		</div>
 	);
 }
