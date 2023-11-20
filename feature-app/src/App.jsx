@@ -5,22 +5,14 @@ import { useState } from 'react';
 
 function App() {
 	const [showCreateForm, setShowCreateForm] = useState(false);
-	const [projectList, setProjectList] = useState([
-		{
-			id: 1,
-			title: 'my title',
-			description: 'some data...',
-			dueDate: new Date(),
-			tasks: [],
-		},
-	]);
+	const [projectList, setProjectList] = useState([]);
+	const [currentProject, setCurrentProject] = useState({});
 
 	function handleShowCreateForm() {
 		setShowCreateForm(true);
 	}
 
 	const addProjectHandler = (project) => {
-		console.log(project);
 		if (project) {
 			setProjectList((prevProjectList) => [project, ...prevProjectList]);
 			setShowCreateForm(false);
@@ -28,7 +20,7 @@ function App() {
 	};
 
 	const showDetails = (details) => {
-		console.log(details, ' << from app comp');
+		setCurrentProject(details);
 	};
 
 	return (
@@ -41,7 +33,7 @@ function App() {
 				<CreateProjectForm
 					onAddProject={addProjectHandler}></CreateProjectForm>
 			) : (
-				<Details></Details>
+				<Details currentProject={currentProject}></Details>
 			)}
 		</div>
 	);
