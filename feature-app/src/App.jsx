@@ -27,11 +27,16 @@ function App() {
 		}
 	};
 
+	const showDetails = (details) => {
+		console.log(details, ' << from app comp');
+	};
+
 	return (
 		<div className='flex max-h-screen'>
 			<Sidebar
 				projectList={projectList}
-				showCreateForm={handleShowCreateForm}></Sidebar>
+				showCreateForm={handleShowCreateForm}
+				showDetails={showDetails}></Sidebar>
 			{showCreateForm ? (
 				<CreateProjectForm
 					onAddProject={addProjectHandler}></CreateProjectForm>

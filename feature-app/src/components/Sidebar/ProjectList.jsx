@@ -1,11 +1,9 @@
 import Project from './Project';
 
-function ProjectList(projectList) {
-	const showDetails = (details) => {
-		console.log(details);
-	};
+function ProjectList({ projects, showDetails }) {
+	debugger;
 
-	const projectElements = projectList.projects.map((proj, i) => {
+	const projectElements = projects.map((proj, i) => {
 		return (
 			<Project
 				key={i}

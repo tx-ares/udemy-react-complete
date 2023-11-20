@@ -9,7 +9,9 @@ function Sidebar(props) {
 				onClick={props.showCreateForm}>
 				+ Add Project
 			</button>
-			<ProjectList projects={props.projectList}></ProjectList>
+			<ProjectList
+				projects={props.projectList}
+				showDetails={props.showDetails}></ProjectList>
 		</div>
 	);
 }

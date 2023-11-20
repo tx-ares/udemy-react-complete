@@ -1,6 +1,6 @@
 import Tasks from './Tasks';
 
-function Details() {
+function Details(props) {
 	return (
 		<div
 			id='details'
