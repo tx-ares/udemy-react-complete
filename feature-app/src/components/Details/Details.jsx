@@ -1,12 +1,22 @@
-import Tasks from './Tasks';
+import TaskList from './TasksList';
 
-function Details(props) {
+function Details({ currentProject }) {
+	console.log(currentProject, ' << in details comp');
 	return (
 		<div
 			id='details'
 			className='flex-col'>
-			Details header
-			<Tasks></Tasks>
+			<h2 className='font-bold'>Project Name</h2>
+			<p>{currentProject.title}</p>
+
+			<h2 className='font-bold'>Due Date</h2>
+			<p>{currentProject.date}</p>
+
+			<h2 className='font-bold'>Description</h2>
+			<p>{currentProject.description}</p>
+
+			<h2 className='font-bold'>Tasks</h2>
+			<TaskList></TaskList>
 		</div>
 	);
 }
