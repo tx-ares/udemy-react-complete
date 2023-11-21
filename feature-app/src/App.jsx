@@ -29,18 +29,23 @@ function App() {
 
 	return (
 		<div className='flex max-h-screen'>
-			<Sidebar
-				projectList={projectList}
-				showCreateForm={handleShowCreateForm}
-				showDetails={showDetails}></Sidebar>
-			{showCreateForm ? (
-				<CreateProjectForm
-					onAddProject={addProjectHandler}></CreateProjectForm>
-			) : !currentProject ? (
-				<h1>Start by adding or selecting a project.</h1>
-			) : (
-				<Details currentProject={currentProject}></Details>
-			)}
+			<div id='sidebar-container'>
+				<Sidebar
+					projectList={projectList}
+					showCreateForm={handleShowCreateForm}
+					showDetails={showDetails}></Sidebar>
+			</div>
+
+			<div id='details-container'>
+				{showCreateForm ? (
+					<CreateProjectForm
+						onAddProject={addProjectHandler}></CreateProjectForm>
+				) : !currentProject ? (
+					<h1>Start by adding or selecting a project.</h1>
+				) : (
+					<Details currentProject={currentProject}></Details>
+				)}
+			</div>
 		</div>
 	);
 }

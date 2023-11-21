@@ -15,7 +15,7 @@ function Details({ currentProject }) {
 			<p>{currentProject.description}</p>
 
 			<h2 className='font-bold'>Tasks</h2>
-			<TaskList></TaskList>
+			<TaskList tasklist={currentProject.tasks}></TaskList>
 		</div>
 	);
 }
