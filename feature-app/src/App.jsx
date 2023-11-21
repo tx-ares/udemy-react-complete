@@ -23,8 +23,24 @@ function App() {
 		setCurrentProject(details);
 	};
 
-	const updateProject = (updatedDetails) => {
-		console.log(updatedDetails);
+	const updateProjectHandler = (updatedProject) => {
+		console.log(projectList);
+		setProjectList((prevProjectList) => {
+			// Find the index of the project to update
+			const index = prevProjectList.findIndex(
+				(project) => project.id === updatedProject.id
+			);
+
+			if (index !== -1) {
+				// Use map to update the specific project without cloning the entire array
+				return prevProjectList.map((project, i) =>
+					i === index ? updatedProject : project
+				);
+			}
+
+			// If the project is not found, return the original array
+			return prevProjectList;
+		});
 	};
 
 	return (
@@ -43,7 +59,9 @@ function App() {
 				) : !currentProject ? (
 					<h1>Start by adding or selecting a project.</h1>
 				) : (
-					<Details currentProject={currentProject}></Details>
+					<Details
+						updateProject={updateProjectHandler}
+						currentProject={currentProject}></Details>
 				)}
 			</div>
 		</div>

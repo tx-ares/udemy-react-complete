@@ -2,7 +2,9 @@ function Task({ title }) {
 	return (
 		<div className='task flex-col'>
 			{title}
-			<button>Clear</button>
+			<button className='ml-4 border-black border-solid rounded'>
+				Clear
+			</button>
 		</div>
 	);
 }

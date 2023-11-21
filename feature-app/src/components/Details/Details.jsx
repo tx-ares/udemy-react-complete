@@ -1,6 +1,11 @@
 import TaskList from './TasksList';
 
-function Details({ currentProject }) {
+function Details({ currentProject, updateProject }) {
+	const handleAddTask = (updatedTasks) => {
+		let updatedProject = currentProject;
+		currentProject.tasks = updatedTasks;
+		updateProject(updatedProject);
+	};
 	return (
 		<div
 			id='details'
@@ -15,7 +20,9 @@ function Details({ currentProject }) {
 			<p>{currentProject.description}</p>
 
 			<h2 className='font-bold'>Tasks</h2>
-			<TaskList tasklist={currentProject.tasks}></TaskList>
+			<TaskList
+				addTask={handleAddTask}
+				tasklist={currentProject.tasks}></TaskList>
 		</div>
 	);
 }
