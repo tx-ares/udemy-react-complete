@@ -1,7 +1,6 @@
 import TaskList from './TasksList';
 
 function Details({ currentProject }) {
-	console.log(currentProject, ' << in details comp');
 	return (
 		<div
 			id='details'

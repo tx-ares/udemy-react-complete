@@ -6,7 +6,7 @@ import { useState } from 'react';
 function App() {
 	const [showCreateForm, setShowCreateForm] = useState(false);
 	const [projectList, setProjectList] = useState([]);
-	const [currentProject, setCurrentProject] = useState({});
+	const [currentProject, setCurrentProject] = useState(null);
 
 	function handleShowCreateForm() {
 		setShowCreateForm(true);
@@ -23,6 +23,10 @@ function App() {
 		setCurrentProject(details);
 	};
 
+	const updateProject = (updatedDetails) => {
+		console.log(updatedDetails);
+	};
+
 	return (
 		<div className='flex max-h-screen'>
 			<Sidebar
@@ -32,6 +36,8 @@ function App() {
 			{showCreateForm ? (
 				<CreateProjectForm
 					onAddProject={addProjectHandler}></CreateProjectForm>
+			) : !currentProject ? (
+				<h1>Start by adding or selecting a project.</h1>
 			) : (
 				<Details currentProject={currentProject}></Details>
 			)}
