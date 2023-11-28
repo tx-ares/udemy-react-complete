@@ -7,7 +7,7 @@ import noProjectImage from './assets/no-projects.png';
 function App() {
 	const [showCreateForm, setShowCreateForm] = useState(false);
 	const [projectList, setProjectList] = useState([]);
-	const [currentProject, setCurrentProject] = useState(null);
+	// const [currentProject, setCurrentProject] = useState(null);
 
 	// By using a single state object we can better handle all these state properties and ensure we don't lose previous state when updating a single property.
 	const [projectsState, setProjectsState] = useState({
@@ -21,7 +21,14 @@ function App() {
 
 	const addProjectHandler = (project) => {
 		if (project) {
-			setProjectList((prevProjectList) => [project, ...prevProjectList]);
+			// setProjectList((prevProjectList) => [project, ...prevProjectList]);
+			setProjectsState((prevState) => {
+				return {
+					...prevState,
+					projects: [...prevState.projects, project],
+					selectedProject: undefined,
+				};
+			});
 			setShowCreateForm(false);
 		}
 	};
@@ -31,7 +38,13 @@ function App() {
 	};
 
 	const showDetails = (details) => {
-		setCurrentProject(details);
+		// setCurrentProject(details);
+		setProjectsState((prevState) => {
+			return {
+				...prevState,
+				selectedProject: details,
+			};
+		});
 	};
 
 	const updateProjectHandler = (updatedProject) => {
@@ -58,7 +71,7 @@ function App() {
 	return (
 		<main className='h-screen my-8 flex gap-8'>
 			<Sidebar
-				projectList={projectList}
+				projectList={projectsState.projects}
 				showCreateForm={handleShowCreateForm}
 				showDetails={showDetails}></Sidebar>
 
@@ -68,7 +81,7 @@ function App() {
 					onCancelAddProject={
 						cancelAddProjectHandler
 					}></CreateProjectForm>
-			) : !currentProject ? (
+			) : !projectsState.selectedProject ? (
 				<div className='mt-244 text-center w-2/3'>
 					<img
 						alt='An empty task list'
@@ -91,7 +104,7 @@ function App() {
 			) : (
 				<Details
 					updateProject={updateProjectHandler}
-					currentProject={currentProject}></Details>
+					currentProject={projectsState.selectedProject}></Details>
 			)}
 		</main>
 	);

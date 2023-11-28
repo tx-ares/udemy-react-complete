@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const CreateProjectForm = (props) => {
+	// This component will use the default props object instead of destructuring it to demonstrate different ways to access props
 	const [formError, setFormError] = useState(false);
 	function submitHandler(event) {
 		const { title, description, dueDate } = event.target.elements;
@@ -14,7 +15,7 @@ const CreateProjectForm = (props) => {
 		} else {
 			setFormError(false);
 			props.onAddProject({
-				id: Math.round(Math.random()),
+				id: Math.random(),
 				title: title.value,
 				description: description.value,
 				date: dueDate.value,
