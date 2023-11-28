@@ -12,6 +12,9 @@ const CreateProjectForm = (props) => {
 		});
 	}
 
+	const textClasses =
+		'w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600';
+
 	return (
 		<form
 			className='flex-col'
@@ -21,6 +24,7 @@ const CreateProjectForm = (props) => {
 					Title
 				</label>
 				<input
+					className={textClasses}
 					type='text'
 					id='title'></input>
 			</div>
@@ -29,10 +33,9 @@ const CreateProjectForm = (props) => {
 				<label className='text-sm font-bold uppercase text-stone-500'>
 					Description
 				</label>
-				<input
-					textarea={true}
-					type='text'
-					id='description'></input>
+				<textarea
+					className={textClasses}
+					id='description'></textarea>
 			</div>
 
 			<div className='flex flex-col gap-1 my-4'>
@@ -40,6 +43,7 @@ const CreateProjectForm = (props) => {
 					Due Date
 				</label>
 				<input
+					className={textClasses}
 					type='date'
 					id='dueDate'></input>
 			</div>
