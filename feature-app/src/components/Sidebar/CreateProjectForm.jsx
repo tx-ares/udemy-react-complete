@@ -26,6 +26,7 @@ const CreateProjectForm = (props) => {
 			<div className='flex'>
 				<label>Description</label>
 				<input
+					textarea={true}
 					type='text'
 					id='description'></input>
 			</div>

@@ -45,26 +45,22 @@ function App() {
 	};
 
 	return (
-		<main className='h-screen my-8'>
-			<div id='sidebar-container'>
-				<Sidebar
-					projectList={projectList}
-					showCreateForm={handleShowCreateForm}
-					showDetails={showDetails}></Sidebar>
-			</div>
+		<main className='h-screen my-8 flex gap-8'>
+			<Sidebar
+				projectList={projectList}
+				showCreateForm={handleShowCreateForm}
+				showDetails={showDetails}></Sidebar>
 
-			<div id='details-container'>
-				{showCreateForm ? (
-					<CreateProjectForm
-						onAddProject={addProjectHandler}></CreateProjectForm>
-				) : !currentProject ? (
-					<h1>Start by adding or selecting a project.</h1>
-				) : (
-					<Details
-						updateProject={updateProjectHandler}
-						currentProject={currentProject}></Details>
-				)}
-			</div>
+			{showCreateForm ? (
+				<CreateProjectForm
+					onAddProject={addProjectHandler}></CreateProjectForm>
+			) : !currentProject ? (
+				<h1>Start by adding or selecting a project.</h1>
+			) : (
+				<Details
+					updateProject={updateProjectHandler}
+					currentProject={currentProject}></Details>
+			)}
 		</main>
 	);
 }
