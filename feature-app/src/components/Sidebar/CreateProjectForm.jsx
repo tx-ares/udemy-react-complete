@@ -16,23 +16,29 @@ const CreateProjectForm = (props) => {
 		<form
 			className='flex-col'
 			onSubmit={submitHandler}>
-			<div className='flex'>
-				<label>Title</label>
+			<div className='flex flex-col gap-1 my-4'>
+				<label className='text-sm font-bold uppercase text-stone-500'>
+					Title
+				</label>
 				<input
 					type='text'
 					id='title'></input>
 			</div>
 
-			<div className='flex'>
-				<label>Description</label>
+			<div className='flex flex-col gap-1 my-4'>
+				<label className='text-sm font-bold uppercase text-stone-500'>
+					Description
+				</label>
 				<input
 					textarea={true}
 					type='text'
 					id='description'></input>
 			</div>
 
-			<div className='flex'>
-				<label>Due Date</label>
+			<div className='flex flex-col gap-1 my-4'>
+				<label className='text-sm font-bold uppercase text-stone-500'>
+					Due Date
+				</label>
 				<input
 					type='date'
 					id='dueDate'></input>
