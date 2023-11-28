@@ -25,6 +25,7 @@ function App() {
 
 	const updateProjectHandler = (updatedProject) => {
 		console.log(projectList);
+		// TODO: theres a bug here.
 		setProjectList((prevProjectList) => {
 			// Find the index of the project to update
 			const index = prevProjectList.findIndex(
@@ -44,7 +45,7 @@ function App() {
 	};
 
 	return (
-		<div className='flex max-h-screen'>
+		<main className='h-screen my-8'>
 			<div id='sidebar-container'>
 				<Sidebar
 					projectList={projectList}
@@ -64,7 +65,7 @@ function App() {
 						currentProject={currentProject}></Details>
 				)}
 			</div>
-		</div>
+		</main>
 	);
 }
 
