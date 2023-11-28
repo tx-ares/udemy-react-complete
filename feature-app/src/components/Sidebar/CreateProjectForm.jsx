@@ -1,15 +1,26 @@
+import { useState } from 'react';
+
 const CreateProjectForm = (props) => {
+	const [formError, setFormError] = useState(false);
 	function submitHandler(event) {
 		const { title, description, dueDate } = event.target.elements;
-
 		event.preventDefault();
-		props.onAddProject({
-			id: Math.round(Math.random()),
-			title: title.value,
-			description: description.value,
-			date: dueDate.value,
-			tasks: [],
-		});
+		if (
+			title.value.trim() === '' ||
+			description.value.trim() === '' ||
+			dueDate.value === ''
+		) {
+			setFormError(true);
+		} else {
+			setFormError(false);
+			props.onAddProject({
+				id: Math.round(Math.random()),
+				title: title.value,
+				description: description.value,
+				date: dueDate.value,
+				tasks: [],
+			});
+		}
 	}
 
 	const textClasses =
@@ -47,6 +58,14 @@ const CreateProjectForm = (props) => {
 					type='date'
 					id='dueDate'></input>
 			</div>
+			{formError ? (
+				<p className='mb-4 text-red-400'>
+					There is an error in your fields. Please verify that all
+					fields have been filled.
+				</p>
+			) : (
+				''
+			)}
 
 			<div className='buttons-container flex'>
 				<button
@@ -54,7 +73,10 @@ const CreateProjectForm = (props) => {
 					className='text-gray-400 bg-gray-700 rounded-md p-1 hover:text-gray-200'>
 					Save
 				</button>
-				<button className='text-gray-400 bg-gray-700 rounded-md p-1 hover:text-gray-200'>
+				<button
+					onClick={props.onCancelAddProject}
+					type='button'
+					className='text-gray-400 bg-gray-700 rounded-md p-1 hover:text-gray-200'>
 					Cancel
 				</button>
 			</div>

@@ -8,6 +8,13 @@ function App() {
 	const [showCreateForm, setShowCreateForm] = useState(false);
 	const [projectList, setProjectList] = useState([]);
 	const [currentProject, setCurrentProject] = useState(null);
+
+	// By using a single state object we can better handle all these state properties and ensure we don't lose previous state when updating a single property.
+	const [projectsState, setProjectsState] = useState({
+		selectedProject: undefined,
+		projects: [],
+	});
+
 	function handleShowCreateForm() {
 		setShowCreateForm(true);
 	}
@@ -17,6 +24,10 @@ function App() {
 			setProjectList((prevProjectList) => [project, ...prevProjectList]);
 			setShowCreateForm(false);
 		}
+	};
+
+	const cancelAddProjectHandler = () => {
+		setShowCreateForm(false);
 	};
 
 	const showDetails = (details) => {
@@ -53,7 +64,10 @@ function App() {
 
 			{showCreateForm ? (
 				<CreateProjectForm
-					onAddProject={addProjectHandler}></CreateProjectForm>
+					onAddProject={addProjectHandler}
+					onCancelAddProject={
+						cancelAddProjectHandler
+					}></CreateProjectForm>
 			) : !currentProject ? (
 				<div className='mt-244 text-center w-2/3'>
 					<img
