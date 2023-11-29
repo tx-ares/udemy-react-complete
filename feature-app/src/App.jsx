@@ -1,27 +1,27 @@
 import Sidebar from './components/Sidebar/Sidebar';
-import Details from './components/Details/Details';
-import CreateProjectForm from './components/Sidebar/CreateProjectForm';
+import SelectedProject from './components/SelectedProject/SelectedProject';
+import NewProject from './components/Sidebar/NewProject';
 import { useState } from 'react';
-import noProjectImage from './assets/no-projects.png';
+import NoProjectSelected from './components/SelectedProject/NoProjectSelected';
 
 function App() {
-	const [showCreateForm, setShowCreateForm] = useState(false);
-	const [projectList, setProjectList] = useState([]);
-	// const [currentProject, setCurrentProject] = useState(null);
-
 	// By using a single state object we can better handle all these state properties and ensure we don't lose previous state when updating a single property.
 	const [projectsState, setProjectsState] = useState({
-		selectedProject: undefined,
+		selectedProjectId: undefined,
 		projects: [],
 	});
 
-	function handleShowCreateForm() {
-		setShowCreateForm(true);
+	function startAddProjectHandler() {
+		setProjectsState((prevState) => {
+			return {
+				...prevState,
+				selectedProjectId: null,
+			};
+		});
 	}
 
 	const addProjectHandler = (project) => {
 		if (project) {
-			// setProjectList((prevProjectList) => [project, ...prevProjectList]);
 			setProjectsState((prevState) => {
 				return {
 					...prevState,
@@ -29,20 +29,24 @@ function App() {
 					selectedProject: undefined,
 				};
 			});
-			setShowCreateForm(false);
 		}
 	};
 
 	const cancelAddProjectHandler = () => {
-		setShowCreateForm(false);
-	};
-
-	const showDetails = (details) => {
-		// setCurrentProject(details);
 		setProjectsState((prevState) => {
 			return {
 				...prevState,
-				selectedProject: details,
+				selectedProjectId: undefined,
+			};
+		});
+	};
+
+	const selectProjectHandler = (id) => {
+		// setCurrentProject(id);
+		setProjectsState((prevState) => {
+			return {
+				...prevState,
+				selectedProjectId: id,
 			};
 		});
 	};
@@ -68,44 +72,34 @@ function App() {
 		});
 	};
 
+	const selectedProject = projectsState.projects.find(
+		(project) => project.id === projectsState.selectedProjectId
+	);
+
+	let content = (
+		<SelectedProject
+			updateProject={updateProjectHandler}
+			currentProject={selectedProject}
+		/>
+	);
+
+	if (projectsState.selectedProjectId === null) {
+		content = <NewProject />;
+	} else if (projectsState.selectedProjectId === undefined) {
+		content = (
+			<NoProjectSelected
+				onStartAddProject={startAddProjectHandler}></NoProjectSelected>
+		);
+	}
+
 	return (
 		<main className='h-screen my-8 flex gap-8'>
 			<Sidebar
 				projectList={projectsState.projects}
-				showCreateForm={handleShowCreateForm}
-				showDetails={showDetails}></Sidebar>
-
-			{showCreateForm ? (
-				<CreateProjectForm
-					onAddProject={addProjectHandler}
-					onCancelAddProject={
-						cancelAddProjectHandler
-					}></CreateProjectForm>
-			) : !projectsState.selectedProject ? (
-				<div className='mt-244 text-center w-2/3'>
-					<img
-						alt='An empty task list'
-						className='w-16 h-16 object-contain mx-auto'
-						src={noProjectImage}
-					/>
-					<h2 className='text-xl font-bold text-stone-500 my-4'>
-						No Project Selected
-					</h2>
-					<p className='text-stone-400 mb-4'>
-						Start by adding or selecting a project.
-					</p>
-
-					<button
-						className='px-4 py-2 text-xs md:text-base rounded-md bg-stone-700 text-stone-400 hover:bg-stone-600 hover:text-stone-100'
-						onClick={handleShowCreateForm}>
-						Create new project
-					</button>
-				</div>
-			) : (
-				<Details
-					updateProject={updateProjectHandler}
-					currentProject={projectsState.selectedProject}></Details>
-			)}
+				onStartAddProject={startAddProjectHandler}
+				onSelectProject={selectProjectHandler}
+				selectedProjectId={projectsState.selectedProjectId}></Sidebar>
+			{content}
 		</main>
 	);
 }

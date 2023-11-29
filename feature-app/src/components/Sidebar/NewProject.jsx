@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const CreateProjectForm = (props) => {
+const NewProject = (props) => {
 	// This component will use the default props object instead of destructuring it to demonstrate different ways to access props
 	const [formError, setFormError] = useState(false);
 	function submitHandler(event) {
@@ -85,4 +85,4 @@ const CreateProjectForm = (props) => {
 	);
 };
 
-export default CreateProjectForm;
+export default NewProject;
