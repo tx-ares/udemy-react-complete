@@ -6,6 +6,15 @@ function Details({ currentProject, updateProject }) {
 		currentProject.tasks = updatedTasks;
 		updateProject(updatedProject);
 	};
+
+	const formattedDate = new Date(currentProject.date).toLocaleDateString(
+		'en-US',
+		{
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric',
+		}
+	);
 	return (
 		<div
 			id='details'
@@ -14,7 +23,7 @@ function Details({ currentProject, updateProject }) {
 			<p>{currentProject.title}</p>
 
 			<h2 className='font-bold'>Due Date</h2>
-			<p>{currentProject.date}</p>
+			<p>{formattedDate}</p>
 
 			<h2 className='font-bold'>Description</h2>
 			<p>{currentProject.description}</p>

@@ -9,7 +9,7 @@ const CreateProjectForm = (props) => {
 		if (
 			title.value.trim() === '' ||
 			description.value.trim() === '' ||
-			dueDate.trim().value === ''
+			dueDate.value.trim().value === ''
 		) {
 			setFormError(true);
 		} else {
