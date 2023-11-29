@@ -10,7 +10,7 @@ function Details({ currentProject, updateProject }) {
 		<div
 			id='details'
 			className='flex-col'>
-			<h2 className='font-bold'>Project Name</h2>
+			<h2 className='font-bold'>Project Title</h2>
 			<p>{currentProject.title}</p>
 
 			<h2 className='font-bold'>Due Date</h2>

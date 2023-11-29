@@ -3,14 +3,16 @@ import Project from './Project';
 function ProjectList({ projects, showDetails }) {
 	const projectElements = projects.map((proj, i) => {
 		return (
-			<Project
-				key={i}
-				details={proj}
-				showDetails={showDetails}></Project>
+			<li key={proj.id}>
+				<Project
+					key={i}
+					details={proj}
+					showDetails={showDetails}></Project>
+			</li>
 		);
 	});
 
-	return <div id='project-list'>{projectElements}</div>;
+	return <ul id='project-list'>{projectElements}</ul>;
 }
 
 export default ProjectList;

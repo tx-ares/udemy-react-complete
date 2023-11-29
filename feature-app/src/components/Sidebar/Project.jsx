@@ -5,7 +5,7 @@ function Project({ details, showDetails }) {
 
 	return (
 		<div
-			className='pt-4 pb-4 hover:text-gray-200 cursor-pointer'
+			className='w-full px-2 rounded-sm mt-3 pt-3 pb-3 hover:text-gray-200 hover:bg-gray-400 cursor-pointer'
 			onClick={handleClick}>
 			{details.title}
 		</div>
