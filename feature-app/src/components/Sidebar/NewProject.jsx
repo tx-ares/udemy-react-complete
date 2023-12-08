@@ -23,7 +23,10 @@ const NewProject = (props) => {
 		}
 	}
 
-	const textClasses =
+	const labelClasses = !formError
+		? 'text-sm font-bold uppercase text-stone-500'
+		: 'text-sm font-bold uppercase text-red-500';
+	const inputClasses =
 		'w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600';
 
 	return (
@@ -31,30 +34,24 @@ const NewProject = (props) => {
 			className='flex-col'
 			onSubmit={submitHandler}>
 			<div className='flex flex-col gap-1 my-4'>
-				<label className='text-sm font-bold uppercase text-stone-500'>
-					Title
-				</label>
+				<label className={labelClasses}>Title</label>
 				<input
-					className={textClasses}
+					className={inputClasses}
 					type='text'
 					id='title'></input>
 			</div>
 
 			<div className='flex flex-col gap-1 my-4'>
-				<label className='text-sm font-bold uppercase text-stone-500'>
-					Description
-				</label>
+				<label className={labelClasses}>Description</label>
 				<textarea
-					className={textClasses}
+					className={inputClasses}
 					id='description'></textarea>
 			</div>
 
 			<div className='flex flex-col gap-1 my-4'>
-				<label className='text-sm font-bold uppercase text-stone-500'>
-					Due Date
-				</label>
+				<label className={labelClasses}>Due Date</label>
 				<input
-					className={textClasses}
+					className={inputClasses}
 					type='date'
 					id='dueDate'></input>
 			</div>
