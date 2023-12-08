@@ -47,7 +47,6 @@ function App() {
 
 	const selectProjectHandler = (project) => {
 		setProjectsState((prevState) => {
-			debugger;
 			return {
 				...prevState,
 				selectedProjectId: project.id,
@@ -56,7 +55,7 @@ function App() {
 	};
 
 	const updateProjectHandler = (updatedProject) => {
-		debugger; // TODO: theres a bug here.
+		// TODO: theres a bug here.
 		setProjectsState((prevState) => {
 			// Find the index of the project to update
 			const index = prevState.projects.findIndex(
@@ -96,7 +95,12 @@ function App() {
 	);
 
 	if (projectsState.selectedProjectId === null) {
-		content = <NewProject onAddProject={addProjectHandler} />;
+		content = (
+			<NewProject
+				onAddProject={addProjectHandler}
+				onCancelAddProject={cancelAddProjectHandler}
+			/>
+		);
 	} else if (projectsState.selectedProjectId === undefined) {
 		content = (
 			<NoProjectSelected
