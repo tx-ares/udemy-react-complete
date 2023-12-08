@@ -45,34 +45,40 @@ function App() {
 		});
 	};
 
-	const selectProjectHandler = (id) => {
-		// setCurrentProject(id);
+	const selectProjectHandler = (project) => {
 		setProjectsState((prevState) => {
+			debugger;
 			return {
 				...prevState,
-				selectedProjectId: id,
+				selectedProjectId: project.id,
 			};
 		});
 	};
 
 	const updateProjectHandler = (updatedProject) => {
-		console.log(projectList);
-		// TODO: theres a bug here.
-		setProjectList((prevProjectList) => {
+		debugger; // TODO: theres a bug here.
+		setProjectsState((prevState) => {
 			// Find the index of the project to update
-			const index = prevProjectList.findIndex(
+			const index = prevState.projects.findIndex(
 				(project) => project.id === updatedProject.id
 			);
 
 			if (index !== -1) {
 				// Use map to update the specific project without cloning the entire array
-				return prevProjectList.map((project, i) =>
-					i === index ? updatedProject : project
-				);
+
+				return {
+					...prevState,
+					projects: [
+						...prevState.projects,
+						prevState.projects.map((project, i) =>
+							i === index ? updatedProject : project
+						),
+					],
+				};
 			}
 
 			// If the project is not found, return the original array
-			return prevProjectList;
+			return prevState;
 		});
 	};
 
