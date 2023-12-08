@@ -45,6 +45,18 @@ function App() {
 		});
 	};
 
+	const deleteProjectHandler = () => {
+		setProjectsState((prevState) => {
+			return {
+				...prevState,
+				selectedProjectId: undefined,
+				projects: prevState.projects.filter(
+					(project) => project.id !== prevState.selectedProjectId
+				),
+			};
+		});
+	};
+
 	const selectProjectHandler = (project) => {
 		setProjectsState((prevState) => {
 			return {
@@ -91,6 +103,7 @@ function App() {
 		<SelectedProject
 			updateProject={updateProjectHandler}
 			currentProject={selectedProject}
+			onDeleteProject={deleteProjectHandler}
 		/>
 	);
 

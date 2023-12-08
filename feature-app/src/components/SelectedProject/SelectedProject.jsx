@@ -1,6 +1,6 @@
 import TaskList from './TasksList';
 
-function SelectedProject({ currentProject, updateProject }) {
+function SelectedProject({ currentProject, updateProject, onDeleteProject }) {
 	const handleAddTask = (updatedTasks) => {
 		let updatedProject = currentProject;
 		currentProject.tasks = updatedTasks;
@@ -19,7 +19,9 @@ function SelectedProject({ currentProject, updateProject }) {
 			<header className='pb-4 mb-4 border-b-2 border-stone-300'>
 				<div className='flex items-center justify-between'>
 					<p className='text-3xl font-bold'>{currentProject.title}</p>
-					<button className='rounded-md p-1 text-red-500 bg-white border-red-400'>
+					<button
+						onClick={onDeleteProject}
+						className='rounded-md p-1 text-red-500 bg-white border-red-400'>
 						Delete
 					</button>
 				</div>
