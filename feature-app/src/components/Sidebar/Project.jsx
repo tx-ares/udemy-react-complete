@@ -2,13 +2,12 @@ function Project({ details, onSelectProject, classes }) {
 	const handleClick = () => {
 		onSelectProject(details);
 	};
-	debugger;
 	return (
-		<div
+		<button
 			className={classes}
-			onClick={() => handleClick(details.id)}>
+			onClick={() => handleClick(details)}>
 			{details.title}
-		</div>
+		</button>
 	);
 }
 

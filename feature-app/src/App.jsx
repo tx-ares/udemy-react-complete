@@ -22,11 +22,15 @@ function App() {
 
 	const addProjectHandler = (project) => {
 		if (project) {
+			const newProject = {
+				...project,
+				id: Math.random(), // TODO: Basic ID generator.  Isn't guarenteed to be unique. Will improve later
+			};
 			setProjectsState((prevState) => {
 				return {
 					...prevState,
-					projects: [...prevState.projects, project],
-					selectedProject: undefined,
+					projects: [...prevState.projects, newProject],
+					selectedProjectId: undefined,
 				};
 			});
 		}
@@ -76,6 +80,8 @@ function App() {
 		(project) => project.id === projectsState.selectedProjectId
 	);
 
+	console.log(projectsState);
+
 	let content = (
 		<SelectedProject
 			updateProject={updateProjectHandler}
@@ -84,7 +90,7 @@ function App() {
 	);
 
 	if (projectsState.selectedProjectId === null) {
-		content = <NewProject />;
+		content = <NewProject onAddProject={addProjectHandler} />;
 	} else if (projectsState.selectedProjectId === undefined) {
 		content = (
 			<NoProjectSelected

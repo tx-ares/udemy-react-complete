@@ -3,7 +3,7 @@ import Project from './Project';
 function ProjectList({ projects, onSelectProject, selectedProjectId }) {
 	const projectElements = projects.map((proj, i) => {
 		let cssClasses =
-			'w-full text-left px-2 py-1 rounded-sm my1 hover:text-stone-200 hover:bg-stone-700 cursor-pointer';
+			'w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-300 hover:bg-stone-700 cursor-pointer';
 		if (proj.id === selectedProjectId) {
 			cssClasses += 'bg-stone-800 text-stone-200';
 		} else {
@@ -21,7 +21,13 @@ function ProjectList({ projects, onSelectProject, selectedProjectId }) {
 		);
 	});
 
-	return <ul id='project-list'>{projectElements}</ul>;
+	return (
+		<ul
+			className='mt-8'
+			id='project-list'>
+			{projectElements}
+		</ul>
+	);
 }
 
 export default ProjectList;

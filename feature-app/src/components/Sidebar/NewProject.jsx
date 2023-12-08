@@ -15,7 +15,6 @@ const NewProject = (props) => {
 		} else {
 			setFormError(false);
 			props.onAddProject({
-				id: Math.random(),
 				title: title.value,
 				description: description.value,
 				date: dueDate.value,
@@ -71,13 +70,13 @@ const NewProject = (props) => {
 			<div className='buttons-container flex'>
 				<button
 					type='submit'
-					className='text-gray-400 bg-gray-700 rounded-md p-1 hover:text-gray-200'>
+					className='w-full text-gray-400 bg-gray-700 rounded-md p-1 mr-2 hover:text-gray-200'>
 					Save
 				</button>
 				<button
 					onClick={props.onCancelAddProject}
 					type='button'
-					className='text-gray-400 bg-gray-700 rounded-md p-1 hover:text-gray-200'>
+					className='w-full text-gray-400 bg-white rounded-md p-1 hover:text-gray-200'>
 					Cancel
 				</button>
 			</div>
