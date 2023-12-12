@@ -26,15 +26,16 @@ function TaskList({ tasklist, addTask }) {
 
 	return (
 		<div>
-			<div className='add-tasks'>
+			<div className='flex items-center gap-4 mb-4'>
 				<form onSubmit={createTask}>
 					<input
+						className='w-64 px-2 py-1 rounded-sm bg-stone-200 mr-4'
 						ref={newTask}
 						type='text'
 					/>
 					<button
 						type='submit'
-						className='text-gray-400 bg-gray-700 rounded-md p-1'>
+						className='text-stone-700 hover:text-stone-950'>
 						+ Add Task
 					</button>
 				</form>
@@ -49,7 +50,7 @@ function TaskList({ tasklist, addTask }) {
 					);
 				})
 			) : (
-				<p>No tasks available.</p>
+				<p>No tasks added yet.</p>
 			)}
 		</div>
 	);
