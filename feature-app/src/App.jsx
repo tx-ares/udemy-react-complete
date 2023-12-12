@@ -93,7 +93,11 @@ function App() {
 		});
 	}
 
-	function addTaskHandler(task) {}
+	function addTaskHandler(task) {
+		console.log(task);
+	}
+
+	function deleteTaskHandler(task) {}
 
 	const selectedProject = projectsState.projects.find(
 		(project) => project.id === projectsState.selectedProjectId
@@ -106,6 +110,8 @@ function App() {
 			updateProject={updateProjectHandler}
 			currentProject={selectedProject}
 			onDeleteProject={deleteProjectHandler}
+			onAddTask={addTaskHandler}
+			onDeleteTask={deleteTaskHandler}
 		/>
 	);
 
@@ -114,7 +120,6 @@ function App() {
 			<NewProject
 				onAddProject={addProjectHandler}
 				onCancelAddProject={cancelAddProjectHandler}
-				onAddTask={addTaskHandler}
 			/>
 		);
 	} else if (projectsState.selectedProjectId === undefined) {
