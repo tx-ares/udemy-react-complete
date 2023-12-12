@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 const NewTask = ({ onAdd }) => {
-	const [enteredtask, setEnteredTask] = useState('');
+	const [enteredTask, setEnteredTask] = useState('');
 
 	function handleChange(event) {
 		setEnteredTask(event.target.value);
 	}
 
 	function handleClick() {
-		onAdd(enteredtask);
+		onAdd(enteredTask);
 		setEnteredTask('');
 	}
 	return (
@@ -17,7 +17,7 @@ const NewTask = ({ onAdd }) => {
 				className='w-64 px-2 py-1 rounded-sm bg-stone-200 mr-4'
 				type='text'
 				onChange={handleChange}
-				value={enteredtask}
+				value={enteredTask}
 			/>
 			<button
 				type='submit'
