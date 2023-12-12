@@ -20,7 +20,7 @@ function App() {
 		});
 	}
 
-	const addProjectHandler = (project) => {
+	function addProjectHandler(project) {
 		if (project) {
 			const newProject = {
 				...project,
@@ -34,18 +34,18 @@ function App() {
 				};
 			});
 		}
-	};
+	}
 
-	const cancelAddProjectHandler = () => {
+	function cancelAddProjectHandler() {
 		setProjectsState((prevState) => {
 			return {
 				...prevState,
 				selectedProjectId: undefined,
 			};
 		});
-	};
+	}
 
-	const deleteProjectHandler = () => {
+	function deleteProjectHandler() {
 		setProjectsState((prevState) => {
 			return {
 				...prevState,
@@ -55,18 +55,18 @@ function App() {
 				),
 			};
 		});
-	};
+	}
 
-	const selectProjectHandler = (project) => {
+	function selectProjectHandler(project) {
 		setProjectsState((prevState) => {
 			return {
 				...prevState,
 				selectedProjectId: project.id,
 			};
 		});
-	};
+	}
 
-	const updateProjectHandler = (updatedProject) => {
+	function updateProjectHandler(updatedProject) {
 		// TODO: theres a bug here.
 		setProjectsState((prevState) => {
 			// Find the index of the project to update
@@ -91,7 +91,9 @@ function App() {
 			// If the project is not found, return the original array
 			return prevState;
 		});
-	};
+	}
+
+	function addTaskHandler(task) {}
 
 	const selectedProject = projectsState.projects.find(
 		(project) => project.id === projectsState.selectedProjectId
@@ -112,6 +114,7 @@ function App() {
 			<NewProject
 				onAddProject={addProjectHandler}
 				onCancelAddProject={cancelAddProjectHandler}
+				onAddTask={addTaskHandler}
 			/>
 		);
 	} else if (projectsState.selectedProjectId === undefined) {
