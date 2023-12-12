@@ -8,8 +8,10 @@ const NewTask = ({ onAdd }) => {
 	}
 
 	function handleClick() {
-		onAdd(enteredTask);
-		setEnteredTask('');
+		if (enteredTask.trim('').length !== 0) {
+			onAdd(enteredTask);
+			setEnteredTask('');
+		}
 	}
 	return (
 		<div className='flex items-center gap-4 mb-4'>

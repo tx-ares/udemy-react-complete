@@ -1,11 +1,6 @@
-import { useRef, useState } from 'react';
-import Task from './Task';
 import NewTask from './NewTask';
 
 function TaskList({ tasks, onAdd, onDelete }) {
-	console.log(tasks, ' << task list');
-	debugger;
-
 	return (
 		<section>
 			<h2 className='font-bold mb-4'>Tasks</h2>
@@ -20,9 +15,16 @@ function TaskList({ tasks, onAdd, onDelete }) {
 				<ul className='p-4 mt-8 rounded-md bg-stone-100'>
 					{tasks.map((task) => {
 						return (
-							<Task
-								key={tasks.id}
-								title={task.title}></Task>
+							<li
+								key={task.id}
+								className='flex justify-between my-4'>
+								<span>{task.title}</span>
+								<button
+									onClick={() => onDelete(task.id)}
+									className='text-stone-700 hover:text-red-500'>
+									Clear
+								</button>
+							</li>
 						);
 					})}
 				</ul>

@@ -1,25 +1,22 @@
 import TaskList from './TasksList';
 
 function SelectedProject({
-	currentProject,
+	project,
 	onDeleteProject,
 	onAddTask,
 	onDeleteTask,
 	tasks,
 }) {
-	const formattedDate = new Date(currentProject.date).toLocaleDateString(
-		'en-US',
-		{
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		}
-	);
+	const formattedDate = new Date(project.date).toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'short',
+		day: 'numeric',
+	});
 	return (
 		<div className='w-[35rem] mt-16'>
 			<header className='pb-4 mb-4 border-b-2 border-stone-300'>
 				<div className='flex items-center justify-between mb-4'>
-					<p className='text-3xl font-bold'>{currentProject.title}</p>
+					<p className='text-3xl font-bold'>{project.title}</p>
 					<button
 						onClick={onDeleteProject}
 						className='rounded-md p-1 text-red-500 bg-white border-red-400'>
@@ -32,7 +29,7 @@ function SelectedProject({
 				</div>
 
 				<h2 className='font-bold'>Description</h2>
-				<p>{currentProject.description}</p>
+				<p>{project.description}</p>
 			</header>
 			<TaskList
 				onAdd={onAddTask}
