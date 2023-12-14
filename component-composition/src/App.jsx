@@ -80,18 +80,12 @@ function App() {
 		// By passing shoppingCart ( The state property ) into the provider's value prop we can access the state in any component that is a child of the App component.
 		// Now if I use ctxValue I can not only add items property but also add a function to update the quantity of an item in the cart.
 		<CartContext.Provider value={ctxValue}>
-			<Header
-				cart={shoppingCart}
-				onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-			/>
+			<Header />
 			<Shop>
 				{/* With component composition, we can insert logic into our Shop component from the App component and removing the need to pass handlers as props. */}
 				{DUMMY_PRODUCTS.map((product) => (
 					<li key={product.id}>
-						<Product
-							{...product}
-							onAddToCart={handleAddItemToCart}
-						/>
+						<Product {...product} />
 					</li>
 				))}
 			</Shop>
