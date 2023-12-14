@@ -69,10 +69,17 @@ function App() {
 		});
 	}
 
+	const ctxValue = {
+		items: shoppingCart.items,
+		addItemToCart: handleAddItemToCart,
+		updateItemQuantity: handleUpdateCartItemQuantity,
+	};
+
 	return (
 		// We can use the CartContext.Provider component to wrap the entire App component. This will allow us to access the CartContext in any component that is a child of the App component.
 		// By passing shoppingCart ( The state property ) into the provider's value prop we can access the state in any component that is a child of the App component.
-		<CartContext.Provider value={shoppingCart}>
+		// Now if I use ctxValue I can not only add items property but also add a function to update the quantity of an item in the cart.
+		<CartContext.Provider value={ctxValue}>
 			<Header
 				cart={shoppingCart}
 				onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
