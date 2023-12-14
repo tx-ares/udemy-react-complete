@@ -4,6 +4,8 @@ import Shop from './components/Shop.jsx';
 import { DUMMY_PRODUCTS } from './dummy-products.js';
 import Product from './components/Product.jsx';
 
+import { CartContext } from './store/shopping-cart-context.jsx';
+
 function App() {
 	const [shoppingCart, setShoppingCart] = useState({
 		items: [],
@@ -68,7 +70,8 @@ function App() {
 	}
 
 	return (
-		<>
+		// We can use the CartContext.Provider component to wrap the entire App component. This will allow us to access the CartContext in any component that is a child of the App component.
+		<CartContext.Provider value={{ items: [] }}>
 			<Header
 				cart={shoppingCart}
 				onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
@@ -84,7 +87,7 @@ function App() {
 					</li>
 				))}
 			</Shop>
-		</>
+		</CartContext.Provider>
 	);
 }
 
