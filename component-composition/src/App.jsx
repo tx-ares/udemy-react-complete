@@ -71,7 +71,8 @@ function App() {
 
 	return (
 		// We can use the CartContext.Provider component to wrap the entire App component. This will allow us to access the CartContext in any component that is a child of the App component.
-		<CartContext.Provider value={{ items: [] }}>
+		// By passing shoppingCart ( The state property ) into the provider's value prop we can access the state in any component that is a child of the App component.
+		<CartContext.Provider value={shoppingCart}>
 			<Header
 				cart={shoppingCart}
 				onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
