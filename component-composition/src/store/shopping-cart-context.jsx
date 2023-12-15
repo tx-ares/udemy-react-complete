@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from 'react';
+import { createContext, useReducer } from 'react';
 import { DUMMY_PRODUCTS } from '../dummy-products';
 
 // This context API workflow seems similar to Angular's dependency injection and the use of services to provide shared data to components
@@ -9,6 +9,62 @@ export const CartContext = createContext({
 });
 
 function shoppingCartReducer(state, action) {
+	if (action.type === 'ADD_ITEM') {
+		const updatedItems = [...state.items];
+
+		const existingCartItemIndex = updatedItems.findIndex(
+			(cartItem) => cartItem.id === action.payload
+		);
+		const existingCartItem = updatedItems[existingCartItemIndex];
+
+		if (existingCartItem) {
+			const updatedItem = {
+				...existingCartItem,
+				quantity: existingCartItem.quantity + 1,
+			};
+			updatedItems[existingCartItemIndex] = updatedItem;
+		} else {
+			const product = DUMMY_PRODUCTS.find(
+				(product) => product.id === action.payload
+			);
+			updatedItems.push({
+				id: action.payload,
+				name: product.title,
+				price: product.price,
+				quantity: 1,
+			});
+		}
+
+		return {
+			/// ...state, // This is not necessary as we are only updating the items property of the state object
+			items: updatedItems,
+		};
+	}
+
+	if (action.type === 'UPDATE_ITEM_QUANTITY') {
+		const updatedItems = [...state.items];
+		const updatedItemIndex = updatedItems.findIndex(
+			(item) => item.id === action.payload.productId
+		);
+
+		const updatedItem = {
+			...updatedItems[updatedItemIndex],
+		};
+
+		updatedItem.quantity += action.payload.amount;
+
+		if (updatedItem.quantity <= 0) {
+			updatedItems.splice(updatedItemIndex, 1);
+		} else {
+			updatedItems[updatedItemIndex] = updatedItem;
+		}
+
+		return {
+			...state, // This is unnecessary as we are updating the items property of the state object
+			items: updatedItems,
+		};
+	}
+
 	return state;
 }
 
@@ -19,70 +75,27 @@ export default function CartContextProvider({ children }) {
 	);
 
 	// Okay, now this is almost exactly like Angular's dependency injection and the use of services to provide shared data to components. Children of the wrapped component can access these functions and data by accessing the children property of the context object.
-	const [shoppingCart, setShoppingCart] = useState({
-		items: [],
-	});
+	// const [shoppingCart, setShoppingCart] = useState({
+	// 	items: [],
+	// });
 
 	function handleAddItemToCart(id) {
-		setShoppingCart((prevShoppingCart) => {
-			const updatedItems = [...prevShoppingCart.items];
-
-			const existingCartItemIndex = updatedItems.findIndex(
-				(cartItem) => cartItem.id === id
-			);
-			const existingCartItem = updatedItems[existingCartItemIndex];
-
-			if (existingCartItem) {
-				const updatedItem = {
-					...existingCartItem,
-					quantity: existingCartItem.quantity + 1,
-				};
-				updatedItems[existingCartItemIndex] = updatedItem;
-			} else {
-				const product = DUMMY_PRODUCTS.find(
-					(product) => product.id === id
-				);
-				updatedItems.push({
-					id: id,
-					name: product.title,
-					price: product.price,
-					quantity: 1,
-				});
-			}
-
-			return {
-				items: updatedItems,
-			};
-		});
+		// The reducer -> dispatch -> action workflow is similar to Angular's NgRx pattern of reducer -> action -> dispatch.
+		// The reducer is a pure function that takes the current state and an action and returns a new state.
+		// The dispatch function is used to send an action to the reducer.The action is an object that describes the action to be performed on the state.
+		// The reducer then returns a new state based on the action.
+		shoppingCartDispatch({ type: 'ADD_ITEM', payload: id });
 	}
 
 	function handleUpdateCartItemQuantity(productId, amount) {
-		setShoppingCart((prevShoppingCart) => {
-			const updatedItems = [...prevShoppingCart.items];
-			const updatedItemIndex = updatedItems.findIndex(
-				(item) => item.id === productId
-			);
-
-			const updatedItem = {
-				...updatedItems[updatedItemIndex],
-			};
-
-			updatedItem.quantity += amount;
-
-			if (updatedItem.quantity <= 0) {
-				updatedItems.splice(updatedItemIndex, 1);
-			} else {
-				updatedItems[updatedItemIndex] = updatedItem;
-			}
-
-			return {
-				items: updatedItems,
-			};
+		shoppingCartDispatch({
+			type: 'UPDATE_ITEM_QUANTITY',
+			payload: { productId, amount },
 		});
 	}
 
 	const ctxValue = {
-		items: shoppingCart.items,
+		items: shoppingCartState.items,
 		addItemToCart: handleAddItemToCart,
 		updateItemQuantity: handleUpdateCartItemQuantity,
 	};
