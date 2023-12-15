@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useReducer, useState } from 'react';
 import { DUMMY_PRODUCTS } from '../dummy-products';
 
 // This context API workflow seems similar to Angular's dependency injection and the use of services to provide shared data to components
@@ -8,7 +8,16 @@ export const CartContext = createContext({
 	updateItemQuantity: () => {},
 });
 
+function shoppingCartReducer(state, action) {
+	return state;
+}
+
 export default function CartContextProvider({ children }) {
+	const [shoppingCartState, shoppingCartDispatch] = useReducer(
+		shoppingCartReducer,
+		{ items: [] }
+	);
+
 	// Okay, now this is almost exactly like Angular's dependency injection and the use of services to provide shared data to components. Children of the wrapped component can access these functions and data by accessing the children property of the context object.
 	const [shoppingCart, setShoppingCart] = useState({
 		items: [],
