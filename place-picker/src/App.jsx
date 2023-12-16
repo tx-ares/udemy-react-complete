@@ -38,7 +38,7 @@ function App() {
 	}
 
 	function handleStopRemovePlace() {
-		setModalIsOpen;
+		setModalIsOpen(false);
 	}
 
 	function handleSelectPlace(id) {
