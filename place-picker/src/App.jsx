@@ -7,11 +7,16 @@ import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import { sortPlacesByDistance } from './loc.js';
 
+const storedIds = JSON.parse(localStorage.getItem('pickedPlaces')) || [];
+const storedPlaces = storedIds.map((id) =>
+	AVAILABLE_PLACES.find((place) => place.id === id)
+);
+
 function App() {
 	const modal = useRef();
 	const selectedPlace = useRef();
-	const [pickedPlaces, setPickedPlaces] = useState([]);
 	const [availablePlaces, setAvailablePlaces] = useState([]);
+	const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
 
 	useEffect(() => {
 		// This is a side effect. It will be executed after the first render if it wasn't inside a useEffect hook.
@@ -46,7 +51,8 @@ function App() {
 		});
 
 		// The below code does not need to be inside a useEffect hook as it only runs when this function is called and not every time the component is rendered.
-		const storedIds = JSON.parse(localStorage.getItem('pickedPlaces'));
+		const storedIds =
+			JSON.parse(localStorage.getItem('pickedPlaces')) || [];
 		if (storedIds.indexOf(id) !== -1) {
 			// If the id is already in the array, do nothing.
 			localStorage.setItem(
@@ -63,6 +69,15 @@ function App() {
 			)
 		);
 		modal.current.close();
+
+		const storedIds =
+			JSON.parse(localStorage.getItem('pickedPlaces')) || [];
+		localStorage.setItem(
+			'pickedPlaces',
+			JSON.stringify(
+				storedIds.filter((id) => id !== selectedPlace.current)
+			)
+		);
 	}
 
 	return (
