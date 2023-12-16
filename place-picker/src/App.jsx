@@ -44,6 +44,16 @@ function App() {
 			const place = AVAILABLE_PLACES.find((place) => place.id === id);
 			return [place, ...prevPickedPlaces];
 		});
+
+		// The below code does not need to be inside a useEffect hook as it only runs when this function is called and not every time the component is rendered.
+		const storedIds = JSON.parse(localStorage.getItem('pickedPlaces'));
+		if (storedIds.indexOf(id) !== -1) {
+			// If the id is already in the array, do nothing.
+			localStorage.setItem(
+				'pickedPlaces',
+				JSON.stringify([id, ...storedIds])
+			);
+		}
 	}
 
 	function handleRemovePlace() {
