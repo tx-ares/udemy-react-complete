@@ -6,6 +6,7 @@ import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import { sortPlacesByDistance } from './loc.js';
+import { useCallback } from 'react';
 
 const storedIds = JSON.parse(localStorage.getItem('pickedPlaces')) || [];
 const storedPlaces = storedIds.map((id) =>
@@ -61,7 +62,7 @@ function App() {
 		}
 	}
 
-	function handleRemovePlace() {
+	const handleRemovePlace = useCallback(function handleRemovePlace() {
 		setPickedPlaces((prevPickedPlaces) =>
 			prevPickedPlaces.filter(
 				(place) => place.id !== selectedPlace.current
@@ -77,7 +78,7 @@ function App() {
 				storedIds.filter((id) => id !== selectedPlace.current)
 			)
 		);
-	}
+	}, []);
 
 	return (
 		<>
