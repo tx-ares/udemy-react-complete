@@ -50,11 +50,10 @@ function App() {
 			return [place, ...prevPickedPlaces];
 		});
 
-		// The below code does not need to be inside a useEffect hook as it only runs when this function is called and not every time the component is rendered.
 		const storedIds =
 			JSON.parse(localStorage.getItem('pickedPlaces')) || [];
-		if (storedIds.indexOf(id) !== -1) {
-			// If the id is already in the array, do nothing.
+		if (storedIds.indexOf(id) === -1) {
+			// If the id is not already in the array, add it to the local storage.
 			localStorage.setItem(
 				'pickedPlaces',
 				JSON.stringify([id, ...storedIds])
