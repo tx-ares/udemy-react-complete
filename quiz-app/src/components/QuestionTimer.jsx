@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const QuestionTimer = ({ timeout, onTimeout }) => {
+const QuestionTimer = ({ timeout, onTimeout, mode }) => {
 	const [remainingTime, setRemainingTime] = useState(timeout);
 
 	useEffect(() => {
@@ -26,6 +26,7 @@ const QuestionTimer = ({ timeout, onTimeout }) => {
 			id='question-time'
 			value={remainingTime}
 			max={timeout}
+			className={mode}
 		/>
 	);
 };
