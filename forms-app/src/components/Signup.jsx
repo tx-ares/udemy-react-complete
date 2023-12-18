@@ -25,6 +25,7 @@ export default function Signup() {
 					id='email'
 					type='email'
 					name='email'
+					required
 				/>
 			</div>
 
@@ -35,6 +36,7 @@ export default function Signup() {
 						id='password'
 						type='password'
 						name='password'
+						required
 					/>
 				</div>
 
@@ -44,6 +46,7 @@ export default function Signup() {
 						id='confirm-password'
 						type='password'
 						name='confirm-password'
+						required
 					/>
 				</div>
 			</div>
