@@ -43,6 +43,7 @@ export default function Login() {
 						id='email'
 						type='email'
 						name='email'
+						required
 					/>
 					<div className='control-error'>
 						{emailIsInvalid && <p>Please enter a valid email.</p>}
@@ -55,6 +56,7 @@ export default function Login() {
 						id='password'
 						type='password'
 						name='password'
+						required
 					/>
 				</div>
 			</div>
