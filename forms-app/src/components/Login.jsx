@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Input from './Input';
 
 export default function Login() {
 	const [enteredData, setEnteredData] = useState({
@@ -7,6 +8,7 @@ export default function Login() {
 	});
 
 	const [emailIsInvalid, setEmailIsInvalid] = useState(false);
+	const [passwordIsInvalid, setPasswordIsInvalid] = useState(false);
 
 	function handleSubmit(event) {
 		event.preventDefault();
@@ -18,11 +20,18 @@ export default function Login() {
 			console.log(updatedData);
 
 			const emailIsValid = updatedData.email.includes('@');
+			const passwordIsValid = updatedData.password.trim().length > 5;
 
 			if (!emailIsValid) {
 				setEmailIsInvalid(true);
 			} else {
 				setEmailIsInvalid(false);
+			}
+
+			if (!passwordIsValid) {
+				setPasswordIsInvalid(true);
+			} else {
+				setPasswordIsInvalid(false);
 			}
 			console.log(emailIsValid, emailIsInvalid);
 
@@ -37,28 +46,25 @@ export default function Login() {
 			<h2>Login</h2>
 
 			<div className='control-row'>
-				<div className='control no-margin'>
-					<label htmlFor='email'>Email</label>
-					<input
-						id='email'
-						type='email'
-						name='email'
-						required
-					/>
-					<div className='control-error'>
-						{emailIsInvalid && <p>Please enter a valid email.</p>}
-					</div>
-				</div>
+				<Input
+					label='Email'
+					id='email'
+					type='email'
+					name='email'
+					error={
+						emailIsInvalid && 'Please enter a valid email address.'
+					}
+				/>
 
-				<div className='control no-margin'>
-					<label htmlFor='password'>Password</label>
-					<input
-						id='password'
-						type='password'
-						name='password'
-						required
-					/>
-				</div>
+				<Input
+					label='Password'
+					id='password'
+					type='password'
+					name='password'
+					error={
+						passwordIsInvalid && 'Please enter a valid password.'
+					}
+				/>
 			</div>
 
 			<p className='form-actions'>
