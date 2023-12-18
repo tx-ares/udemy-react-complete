@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export default function Signup() {
+	const [passwordsAreNotEqual, setPasswordsAreNotEqual] = useState(false);
+
 	function handleSubmit(event) {
 		event.preventDefault();
 		console.log('Form submitted!');
@@ -7,6 +11,11 @@ export default function Signup() {
 		const acquisitionChannel = formData.getAll('acquisition');
 		const data = Object.fromEntries(formData.entries()); // The FormData object has a method called entries() that returns an iterator over the key-value pairs in the form.  We can use this to create an object with the data from the form.
 		data.acquisition = acquisitionChannel;
+
+		if (data.password !== data['confirm-password']) {
+			setPasswordsAreNotEqual(true);
+			return;
+		}
 
 		event.target.reset(); // We can reset the form by calling the reset() method on the event.target object.
 		// It should be noted that this is technically considered an imperative approach to resetting the form, but in this case it results in much less / cleaner code than the declarative approach so the trade off is worth it.
@@ -48,6 +57,9 @@ export default function Signup() {
 						name='confirm-password'
 						required
 					/>
+				</div>
+				<div className='control-error'>
+					{passwordsAreNotEqual && <p>Passwords must match.</p>}
 				</div>
 			</div>
 
