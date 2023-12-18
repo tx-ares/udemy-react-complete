@@ -1,24 +1,45 @@
 export default function Login() {
-  return (
-    <form>
-      <h2>Login</h2>
+	function handleSubmit(event) {
+		event.preventDefault();
+		console.log('Form submitted');
+	}
 
-      <div className="control-row">
-        <div className="control no-margin">
-          <label htmlFor="email">Email</label>
-          <input id="email" type="email" name="email" />
-        </div>
+	return (
+		<form onSubmit={handleSubmit}>
+			<h2>Login</h2>
 
-        <div className="control no-margin">
-          <label htmlFor="password">Password</label>
-          <input id="password" type="password" name="password" />
-        </div>
-      </div>
+			<div className='control-row'>
+				<div className='control no-margin'>
+					<label htmlFor='email'>Email</label>
+					<input
+						id='email'
+						type='email'
+						name='email'
+					/>
+				</div>
 
-      <p className="form-actions">
-        <button className="button button-flat">Reset</button>
-        <button className="button">Login</button>
-      </p>
-    </form>
-  );
+				<div className='control no-margin'>
+					<label htmlFor='password'>Password</label>
+					<input
+						id='password'
+						type='password'
+						name='password'
+					/>
+				</div>
+			</div>
+
+			<p className='form-actions'>
+				<button
+					type='button'
+					className='button button-flat'>
+					Reset
+				</button>
+				<button
+					type='submit'
+					className='button'>
+					Login
+				</button>
+			</p>
+		</form>
+	);
 }
