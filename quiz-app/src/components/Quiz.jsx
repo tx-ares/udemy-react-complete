@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useCallback } from 'react';
-import quizCompleteImg from '../assets/quiz-complete.png';
 
 import QUESTIONS from '../data/questions';
 import Question from './Question';
+import Summary from './Summary';
 
 const Quiz = () => {
 	const [userAnswers, setUserAnswers] = useState([]);
@@ -27,18 +27,9 @@ const Quiz = () => {
 
 	if (quizIsComplete) {
 		return (
-			<div id='summary'>
-				<img
-					src={quizCompleteImg}
-					alt='Trophy'
-				/>
-				<h2>Quiz Complete!</h2>
-				<button
-					className='reset-button'
-					onClick={() => setUserAnswers([])}>
-					Restart Quiz
-				</button>
-			</div>
+			<Summary
+				userAnswers={userAnswers}
+				onReset={setUserAnswers}></Summary>
 		);
 	} else {
 		return (
