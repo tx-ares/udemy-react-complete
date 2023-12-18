@@ -47,15 +47,33 @@ function App() {
 		}
 	}
 
-	const handleRemovePlace = useCallback(async function handleRemovePlace() {
-		setUserPlaces((prevPickedPlaces) =>
-			prevPickedPlaces.filter(
-				(place) => place.id !== selectedPlace.current.id
-			)
-		);
+	const handleRemovePlace = useCallback(
+		async function handleRemovePlace() {
+			setUserPlaces((prevPickedPlaces) =>
+				prevPickedPlaces.filter(
+					(place) => place.id !== selectedPlace.current.id
+				)
+			);
 
-		setModalIsOpen(false);
-	}, []);
+			try {
+				await updateUserPlaces(
+					userPlaces.filter(
+						// This will filter our userPlaces array to remove the place that was selected
+						(place) => place.id !== selectedPlace.current.id
+					)
+				);
+			} catch (error) {
+				// In this "optimisic" approach, we update the UI first, then if the request fails, we revert the UI back to the previous state
+				setUserPlaces(userPlaces);
+				setErrorUpdatingPlaces({
+					message: error.message || 'Failed to delete place.',
+				});
+			}
+
+			setModalIsOpen(false);
+		},
+		[userPlaces]
+	);
 
 	function handleError() {
 		setErrorUpdatingPlaces(null);
