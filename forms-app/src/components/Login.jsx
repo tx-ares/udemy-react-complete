@@ -1,7 +1,21 @@
+import { useState } from 'react';
+
 export default function Login() {
+	const [enteredData, setEnteredData] = useState({
+		email: '',
+		password: '',
+	});
+
 	function handleSubmit(event) {
 		event.preventDefault();
-		console.log('Form submitted');
+		console.log(enteredData);
+	}
+
+	function handleDataChange(event) {
+		setEnteredData({
+			...enteredData,
+			[event.target.name]: event.target.value,
+		});
 	}
 
 	return (
@@ -15,6 +29,7 @@ export default function Login() {
 						id='email'
 						type='email'
 						name='email'
+						onChange={handleDataChange}
 					/>
 				</div>
 
@@ -24,6 +39,7 @@ export default function Login() {
 						id='password'
 						type='password'
 						name='password'
+						onChange={handleDataChange}
 					/>
 				</div>
 			</div>
