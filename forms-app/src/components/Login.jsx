@@ -6,35 +6,30 @@ export default function Login() {
 		password: '',
 	});
 
-	const [edited, setEdited] = useState({
-		email: false,
-		password: false,
-	});
-
-	const emailIsInvalid = edited.email && !enteredData.email.includes('@');
+	const [emailIsInvalid, setEmailIsInvalid] = useState(false);
 
 	function handleSubmit(event) {
 		event.preventDefault();
-		console.log(enteredData);
-	}
+		setEnteredData(() => {
+			const updatedData = {
+				email: event.target.email.value,
+				password: event.target.password.value,
+			};
+			console.log(updatedData);
 
-	function handleDataChange(event) {
-		setEnteredData({
-			...enteredData,
-			[event.target.name]: event.target.value,
-		});
-		setEdited({
-			...edited,
-			[event.target.name]: false,
-		});
-	}
+			const emailIsValid = updatedData.email.includes('@');
 
-	function handleInputBlur(event) {
-		console.log(event.target.value);
-		setEdited({
-			...edited,
-			[event.target.name]: true,
-		}); // This will clear the error message when the user starts typing again.
+			if (!emailIsValid) {
+				setEmailIsInvalid(true);
+			} else {
+				setEmailIsInvalid(false);
+			}
+			console.log(emailIsValid, emailIsInvalid);
+
+			console.log('Form submitted!');
+
+			return updatedData;
+		});
 	}
 
 	return (
@@ -48,8 +43,6 @@ export default function Login() {
 						id='email'
 						type='email'
 						name='email'
-						onBlur={handleInputBlur}
-						onChange={handleDataChange}
 					/>
 					<div className='control-error'>
 						{emailIsInvalid && <p>Please enter a valid email.</p>}
@@ -62,7 +55,6 @@ export default function Login() {
 						id='password'
 						type='password'
 						name='password'
-						onChange={handleDataChange}
 					/>
 				</div>
 			</div>
