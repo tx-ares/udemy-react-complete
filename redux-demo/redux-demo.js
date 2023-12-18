@@ -1,4 +1,4 @@
-const redux = require('redux');
+const redux = require('redux'); // Important to remember that redux being a 3rd party package can be used in any JavaScript application and is not directly tied to React.
 
 // A reducer function is a not a React specific concept.  It is simply a pure function that takes an assortment of values and reduces them to a single value.
 // In the case of Redux, the reducer function takes the current state and an action and returns the new state.
