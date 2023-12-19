@@ -1,13 +1,17 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-const initState = {
+const initCounterState = {
 	counter: 0,
 	showCounter: true,
 };
 
+const initAuthState = {
+	isAuthenticated: false,
+};
+
 const counterSlice = createSlice({
 	name: 'counter',
-	initialState: initState,
+	initialState: initCounterState,
 	reducers: {
 		increment(state) {
 			state.counter++;
@@ -24,10 +28,29 @@ const counterSlice = createSlice({
 	},
 });
 
-const store = configureStore({
-	reducer: counterSlice.reducer,
+const authSlice = createSlice({
+	name: 'authentication',
+	initialState: initAuthState,
+	reducers: {
+		login(state) {
+			state.isAuthenticated = true;
+		},
+		logout(state) {
+			state.isAuthenticated = false;
+		},
+	},
 });
 
+// We always maintain the one Store object, but we can add additional reducer keys to it. Each key will then identify a slice of the state managed by that reducer.
+const store = configureStore({
+	reducer: {
+		counter: counterSlice.reducer,
+		auth: authSlice.reducer,
+	},
+});
+
+// We must also export the actions from the slices and use them in our components.  These get exported individually, so we can import them individually in our components.
 export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 
 export default store;
