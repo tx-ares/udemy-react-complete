@@ -5,8 +5,7 @@ import { useSelector, connect, useDispatch } from 'react-redux';
 const Counter = () => {
 	const dispatch = useDispatch();
 	const counter = useSelector((state) => state.counter); // By using useSelector, we can access a slice of the state. It also creates a subscription from this component to the store. It also removes the subscription upon unmounting ( destroying ) of the component.
-
-	const toggleCounterHandler = () => {};
+	const showCounter = useSelector((state) => state.showCounter);
 
 	const incrementHandler = () => {
 		dispatch({ type: 'increment' });
@@ -20,10 +19,14 @@ const Counter = () => {
 		dispatch({ type: 'decrement' });
 	}
 
+	function toggleCounterHandler() {
+		dispatch({ type: 'toggle' });
+	}
+
 	return (
 		<main className={classes.counter}>
 			<h1>Redux Counter</h1>
-			<div className={classes.value}>{counter}</div>
+			{showCounter && <div className={classes.value}>{counter}</div>}
 			<div>
 				<button onClick={incrementHandler}>Add</button>
 				<button onClick={increaseHandler}>Add 5</button>
