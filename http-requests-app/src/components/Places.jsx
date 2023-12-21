@@ -7,7 +7,6 @@ export default function Places({
 	onSelectPlace,
 }) {
 	console.log(places);
-	debugger;
 	return (
 		<section className='places-category'>
 			<h2>{title}</h2>
