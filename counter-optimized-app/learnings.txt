@@ -1,0 +1,4 @@
+This project highlights performance enhancing techniques like using memo-ization.  This is a way for React to cache certain component property values to only rerender components when specific property changes happen. 
+This prevents unneccessary re-renders and thus improving app performance.
+MillionJS is a 3rd party library that is very useful in improving React performance.
+https://million.dev/docs
