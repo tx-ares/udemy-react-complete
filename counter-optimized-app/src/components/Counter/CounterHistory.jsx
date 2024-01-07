@@ -22,13 +22,14 @@ function HistoryItem({ count }) {
 
 export default function CounterHistory({ history }) {
 	log('<CounterHistory /> rendered', 2);
+	debugger;
 
 	return (
 		<ol>
 			{history.map((count) => (
 				<HistoryItem
 					key={count.id}
-					count={count}
+					count={count.value}
 				/>
 			))}
 		</ol>
