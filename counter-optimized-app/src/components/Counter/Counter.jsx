@@ -1,4 +1,4 @@
-import { useState, memo, useCallback } from 'react';
+import { useState, memo, useCallback, useMemo } from 'react';
 
 import IconButton from '../UI/IconButton.jsx';
 import MinusIcon from '../UI/Icons/MinusIcon.jsx';
@@ -32,7 +32,12 @@ function isPrime(number) {
 // Keep in mind that if you prevent rendering using memo method to a parent component, the children will also not re-render.
 const Counter = memo(function Counter({ initialCount }) {
 	log('<Counter /> rendered', 1);
-	const initialCountIsPrime = isPrime(initialCount);
+
+	// useMemo is a way to tell react to only re-run the function if the dependencies change. This can prevent expensive function calls from re-running.
+	const initialCountIsPrime = useMemo(
+		() => isPrime(initialCount),
+		[initialCount]
+	);
 
 	const [counter, setCounter] = useState(initialCount);
 
