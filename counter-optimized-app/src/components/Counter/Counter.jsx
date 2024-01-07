@@ -27,6 +27,9 @@ function isPrime(number) {
 // This is a shallow comparision and will not work with complex objects for example if
 // the props contain arrays or objects.  (To compare those types of props would require
 // a deep comparision which is not built into React.You would need to use a library like lodash to do that. )
+// This is a useful way to optimize your app if you have a component that is re-rendering, however should not always be used.
+// If you have a component that is re - rendering because it is receiving new props and you want it to re - render, then you should not use memo.
+// Keep in mind that if you prevent rendering using memo method to a parent component, the children will also not re-render.
 const Counter = memo(function Counter({ initialCount }) {
 	log('<Counter /> rendered', 1);
 	const initialCountIsPrime = isPrime(initialCount);
