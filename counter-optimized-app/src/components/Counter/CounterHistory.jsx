@@ -22,7 +22,6 @@ function HistoryItem({ count }) {
 
 export default function CounterHistory({ history }) {
 	log('<CounterHistory /> rendered', 2);
-	debugger;
 
 	return (
 		<ol>
