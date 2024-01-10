@@ -1,3 +1,9 @@
 Class based components are the original method for declaring components in react.  Since version 16.8, this is no longer needed since Functional components can now handle everything that class based components were used for.
 For a while, class based components were still necessary to handle things like state management but now with React Hooks being included, these can now be used to handle state in Functional components.  In fact, hooks must be used in Functional components giving even more reason to always use them over Class based components.
 That being said, Class based components are still used in older react projects and thus is important to be aware of how they work.  
+
+Key features of Class Based components:
+
+- Are more like Angular components in that they are class based and share a similar mental model when implementing them.
+- Use life cycle methods to hook onto events. ( These are replaced by React Hooks in v17 )
+- Cannot use React Hooks like useEffect() and useState()
