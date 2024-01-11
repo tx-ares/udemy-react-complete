@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 // Hooks should start with 'use'. This is a convention that tells React that this function is a hook and should be treated as such.
 export function useFetch(fetchFn, initalValue) {
+	// State can be exposed to the component from the hook by returning it from the hook.
 	const [isFetching, setIsFetching] = useState(false);
 	const [error, setError] = useState(null);
 	const [fetchedData, setFetchedData] = useState(initalValue);
@@ -24,5 +25,5 @@ export function useFetch(fetchFn, initalValue) {
 		fetchData();
 	}, [fetchFn]);
 
-	return { isFetching, error, fetchedData };
+	return { isFetching, error, setFetchedData, fetchedData };
 }

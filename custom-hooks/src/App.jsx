@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback } from 'react';
 
 import Places from './components/Places.jsx';
 import Modal from './components/Modal.jsx';
@@ -20,6 +20,7 @@ function App() {
 		isFetching,
 		error,
 		fetchedData: userPlaces,
+		setFetchedData: setUserPlaces,
 	} = useFetch(fetchUserPlaces, []);
 
 	function handleStartRemovePlace(place) {
