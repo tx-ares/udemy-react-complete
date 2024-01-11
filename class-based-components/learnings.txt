@@ -7,3 +7,4 @@ Key features of Class Based components:
 - Are more like Angular components in that they are class based and share a similar mental model when implementing them.
 - Use life cycle methods to hook onto events. ( These are replaced by React Hooks in v17 )
 - Cannot use React Hooks like useEffect() and useState()
+- One unique advantage of Class based components is ability to use ErrorBoundarys to gracefully fail - or control how errors are shown without crashing the entire app.
