@@ -3,6 +3,11 @@ import { Component } from 'react';
 
 // Class based component
 class User extends Component {
+	componentWillUnmount() {
+		// This is similar to Angular's ngOnDestroy() lifecycle hook.
+		console.log('User unmounted!');
+	}
+
 	render() {
 		return <li className={classes.user}>{this.props.name}</li>;
 	}
