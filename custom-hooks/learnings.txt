@@ -1,0 +1,1 @@
+Hooks generally can only be used within Functional Components.  A caveat is that they can be used within hooks as well, as long as the parent hook is inside of a Functional Component.
