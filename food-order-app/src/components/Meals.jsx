@@ -14,7 +14,6 @@ export default function Meals() {
 
 			const meals = await response.json();
 			setloadedMeals(meals);
-			console.log(loadedMeals);
 		}
 
 		fetchMeals();
