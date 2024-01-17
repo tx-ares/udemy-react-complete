@@ -1,2 +1,5 @@
 In redux, reducers are functions that return a single value.  In addition, they must remain pure and synchronus.  Another thing to note is that state must remain unmutated in reducer functions otherwise it would disrupt
 the whole design purpose of using a reducer.  It's main function is to return a new state object to replace the current state object as the new updated state.  
+
+In this project, I'll make use of the reduxjs toolkit package, which provides optional tools for managing state easier.  With it, we can create 'slices' of state which can mutate the state object from within if needed since the createSlice 
+method actually handles the creating of a new state object for us. It's important to understand what it is doing under the hood and not mistake that it isn't following redux's rules of reducer functions.
