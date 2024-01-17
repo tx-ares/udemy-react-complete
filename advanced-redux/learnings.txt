@@ -1,0 +1,2 @@
+In redux, reducers are functions that return a single value.  In addition, they must remain pure and synchronus.  Another thing to note is that state must remain unmutated in reducer functions otherwise it would disrupt
+the whole design purpose of using a reducer.  It's main function is to return a new state object to replace the current state object as the new updated state.  
